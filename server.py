@@ -10,7 +10,7 @@ print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-os.system("while true; do raspistill -w 1280 -h 720 -n -o static/cam.jpeg; done & ")
+os.system("while true; do raspistill -w 1280 -h 810 -n -o static/cam.jpeg; done & ")
 dates = []
 times = []
 types = []
