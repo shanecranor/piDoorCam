@@ -5,34 +5,48 @@ import sys
 from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
-import os
-import Adafruit_DHT
-import subprocess
 import adcUtil as adc
+import Adafruit_DHT
+import dht11
+import pigpio
+
+
 print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-#proc = subprocess.Popen(["./camLoop.sh"])
+os.system("")
+proc = subprocess.Popen(["./camLoop.sh"])
 dates = []
 times = []
 types = []
+
 
 @route('/')
 def index():
     html = open('index.html').read()
     html = html.replace("<{weekago}>", (datetime.today()-timedelta(7)).strftime("%b %d, %y"))
     html = html.replace("<{monthago}>", (datetime.today()-timedelta(30)).strftime("%b %d, %y"))
-    # humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 4)
-    # html = html.replace("<{Temperature}>", temperature)
-    # html = html.replace("<{Humidity}>", humidity)
+    
+    pi = pigpio.pi()
+    sensor = DHT11(pi, 4)
+    temperature = None
+    humidity = None
+    for response in sensor:
+        temperature = response['temperature']
+        humidity = humidity['humidity']
+    sensor.close()
+    
+    html = html.replace("<{Temperature}>", temperature)
+    html = html.replace("<{Humidity}>", humidity)
 
-    Vou_photoresist = adc.readADC(channel=1, device=1)
-    html = html.replace("<{Light Intensity}>", str(100*Vou_photoresist / 2.5))
-    # generateWeek()
-    # generateMonth()
-    # generateDayLoad()
-    # generateMonthDrive()
+    Vou_photoresist = adc.readADC(channel=0)
+    html = html.replace("<{Light Intensity}>", Vou_photoresist / 2)
+    
+    generateWeek()
+    generateMonth()
+    generateDayLoad()
+    generateMonthDrive()
     
     html = replaceEvents(html)
     
