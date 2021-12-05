@@ -5,6 +5,9 @@ import sys
 from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
+import adcUtil as adc
+import Adafruit_DHT
+
 
 print("Python version")
 print (sys.version)
@@ -15,11 +18,19 @@ dates = []
 times = []
 types = []
 
+
 @route('/')
 def index():
     html = open('index.html').read()
     html = html.replace("<{weekago}>", (datetime.today()-timedelta(7)).strftime("%b %d, %y"))
     html = html.replace("<{monthago}>", (datetime.today()-timedelta(30)).strftime("%b %d, %y"))
+    
+    humidity, temperature = Adafruit_DHT.read_retry(11, 4)
+    html = html.replace("<{Temperature}>", humidity)
+    html = html.replace("<{Humidity}>", temperature)
+
+    Vou_photoresist = adc.readADC(channel=0)
+    html = html.replace("<{Light Intensity}>", Vou_photoresist / 2)
     
     generateWeek()
     generateMonth()
