@@ -23,12 +23,12 @@ def index():
     html = html.replace("<{weekago}>", (datetime.today()-timedelta(7)).strftime("%b %d, %y"))
     html = html.replace("<{monthago}>", (datetime.today()-timedelta(30)).strftime("%b %d, %y"))
 
-    #generateWeek()
-    #generateMonth()
-    #generateDayLoad()
-    #generateMonthDrive()
+    generateWeek()
+    generateMonth()
+    generateDayLoad()
+    generateMonthDrive()
     
-    #html = replaceEvents(html)
+    html = replaceEvents(html)
     
     return html
 
