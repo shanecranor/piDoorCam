@@ -6,11 +6,13 @@ from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import subprocess
 print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-os.system("while true; do raspistill -w 1280 -h 810 -n -o static/cam.jpeg; done & ")
+os.system("")
+proc = subprocess.Popen(["./camLoop.sh"])
 dates = []
 times = []
 types = []
