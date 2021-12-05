@@ -6,13 +6,14 @@ from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import Adafruit_DHT
 import subprocess
+import adcUtil as adc
 print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-os.system("")
-proc = subprocess.Popen(["./camLoop.sh"])
+#proc = subprocess.Popen(["./camLoop.sh"])
 dates = []
 times = []
 types = []
@@ -22,11 +23,16 @@ def index():
     html = open('index.html').read()
     html = html.replace("<{weekago}>", (datetime.today()-timedelta(7)).strftime("%b %d, %y"))
     html = html.replace("<{monthago}>", (datetime.today()-timedelta(30)).strftime("%b %d, %y"))
+    # humidity, temperature = Adafruit_DHT.read_retry(Adafruit_DHT.DHT11, 4)
+    # html = html.replace("<{Temperature}>", temperature)
+    # html = html.replace("<{Humidity}>", humidity)
 
-    generateWeek()
-    generateMonth()
-    generateDayLoad()
-    generateMonthDrive()
+    Vou_photoresist = adc.readADC(channel=1, device=1)
+    html = html.replace("<{Light Intensity}>", str(100*Vou_photoresist / 2.5))
+    # generateWeek()
+    # generateMonth()
+    # generateDayLoad()
+    # generateMonthDrive()
     
     html = replaceEvents(html)
     
