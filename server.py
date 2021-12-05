@@ -5,7 +5,7 @@ import sys
 from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
-
+import os
 print("Python version")
 print (sys.version)
 print("Version info.")
@@ -20,7 +20,7 @@ def index():
     html = open('index.html').read()
     html = html.replace("<{weekago}>", (datetime.today()-timedelta(7)).strftime("%b %d, %y"))
     html = html.replace("<{monthago}>", (datetime.today()-timedelta(30)).strftime("%b %d, %y"))
-    
+    os.system("raspistill -n -o newtest.jpg")
     generateWeek()
     generateMonth()
     generateDayLoad()
