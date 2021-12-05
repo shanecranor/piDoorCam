@@ -5,15 +5,21 @@ import sys
 from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
+<<<<<<< HEAD
 import adcUtil as adc
 import Adafruit_DHT
 
 
+=======
+import os
+import subprocess
+>>>>>>> 9e2b04002870596d7e7771cf8dc56aea82c1cf86
 print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-
+os.system("")
+proc = subprocess.Popen(["./camLoop.sh"])
 dates = []
 times = []
 types = []
