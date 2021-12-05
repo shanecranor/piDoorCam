@@ -10,7 +10,7 @@ print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-
+os.system("while true; do raspistill -w 1280 -h 720 -n -o static/cam.jpeg; done & ")
 dates = []
 times = []
 types = []
@@ -20,7 +20,7 @@ def index():
     html = open('index.html').read()
     html = html.replace("<{weekago}>", (datetime.today()-timedelta(7)).strftime("%b %d, %y"))
     html = html.replace("<{monthago}>", (datetime.today()-timedelta(30)).strftime("%b %d, %y"))
-    os.system("raspistill -w 1280 -h 720 -n -o static/cam.jpeg")
+
     generateWeek()
     generateMonth()
     generateDayLoad()
