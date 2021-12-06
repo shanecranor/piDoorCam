@@ -6,8 +6,7 @@ from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 import adcUtil as adc
-#import Adafruit_DHT
-from dht11 import DHT11
+import dht11
 import pigpio
 
 
@@ -15,13 +14,13 @@ print("Python version")
 print (sys.version)
 print("Version info.")
 print (sys.version_info)
-# proc = subprocess.Popen(["./camLoop.sh"])
 dates = []
 times = []
 types = []
 GPIO.cleanup()
 prevTemp = 0
 prevHumidity = 0
+
 
 
 @route('/')
@@ -54,7 +53,7 @@ def index():
     # generateMonth()
     # generateDayLoad()
     # generateMonthDrive()
-    
+
     html = replaceEvents(html)
     
     return html
