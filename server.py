@@ -43,7 +43,7 @@ def index():
     sensor.close()
     pi.stop()
     
-    html = html.replace("<{Temperature}>", str(temperature))
+    html = html.replace("<{Temperature}>", str(int(temperature*9/5+32))
     html = html.replace("<{Humidity}>", str(humidity))
 
     Vou_photoresist = adc.readADC(channel=0)
