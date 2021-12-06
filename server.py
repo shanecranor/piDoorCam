@@ -50,10 +50,10 @@ def index():
     print(Vou_photoresist)
     html = html.replace("<{Light Intensity}>", str(int(100*Vou_photoresist / 2.6)))
     
-    # generateWeek()
-    # generateMonth()
-    # generateDayLoad()
-    # generateMonthDrive()
+    generateWeek()
+    generateMonth()
+    generateDayLoad()
+    generateMonthDrive()
 
     html = replaceEvents(html)
     
@@ -66,9 +66,9 @@ def server_static(filename):
 
 
 def generateWeek():
-    arr = np.random.randint(40, 80, 29)
-    hum = np.random.randint(15, 95, 29)
-    light = np.random.randint(0, 100, 29)
+    arr = np.random.randint(40, 60, 29)
+    hum = np.random.randint(15, 30, 29)
+    light = np.random.randint(5, 20, 29)
     t = np.arange(datetime.today()-timedelta(7), datetime.today(), timedelta(days=0.25)).astype(datetime)
     plt.figure(figsize=(10,4))
     plt.plot(t, arr, label="Temp")
@@ -79,9 +79,9 @@ def generateWeek():
     
     
 def generateMonth():
-    arr = np.random.randint(40, 80, 30+1)
-    hum = np.random.randint(15, 95, 30+1)
-    light = np.random.randint(0, 100, 30+1)
+    arr = np.random.randint(40, 60, 30+1)
+    hum = np.random.randint(15, 30, 30+1)
+    light = np.random.randint(5, 20, 30+1)
     t = np.arange(datetime.today()-timedelta(30), datetime.today(), timedelta(days=1)).astype(datetime)
     plt.figure(figsize=(10,4))
     plt.plot(t, arr, label="Temp")
@@ -92,7 +92,7 @@ def generateMonth():
     
 
 def generateDayLoad():
-    arr = np.random.randint(5, 25, int((24*60)/5+1))
+    arr = np.random.randint(5, 10, int((24*60)/5+1))
     t = np.arange(datetime.today()-timedelta(1), datetime.today(), timedelta(minutes=5)).astype(datetime)
     plt.figure(figsize=(10,4))
     plt.plot(t, arr)
