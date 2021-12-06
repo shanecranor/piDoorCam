@@ -54,6 +54,7 @@ def index():
     generateMonth()
     generateDayLoad()
     generateMonthDrive()
+    plt.close(fig="all")
 
     html = replaceEvents(html)
     
