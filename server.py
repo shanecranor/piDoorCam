@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 import adcUtil as adc
-import dht11
+from dht11 import DHT11
 import pigpio
 
 
