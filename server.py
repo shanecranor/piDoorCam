@@ -47,7 +47,7 @@ def index():
     html = html.replace("<{Humidity}>", str(humidity))
 
     Vou_photoresist = adc.readADC(channel=0)
-    html = html.replace("<{Light Intensity}>", str(100*Vou_photoresist / 2.6))
+    html = html.replace("<{Light Intensity}>", str(int(100*Vou_photoresist / 2.6)))
     
     # generateWeek()
     # generateMonth()
