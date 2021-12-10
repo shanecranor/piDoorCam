@@ -14,7 +14,7 @@ while True:
         print("recording")
         
         start = time()
-        finsih = start + 5
+        finish = start + 5
         audio = np.empty(1)
         
         # reads in the audio files for 5 seconds
