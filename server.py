@@ -17,7 +17,6 @@ print (sys.version_info)
 dates = []
 times = []
 types = []
-GPIO.cleanup()
 prevTemp = 0
 prevHumidity = 0
 
@@ -132,5 +131,10 @@ def replaceEvents(html):
         
     return html
 
-run(host='0.0.0.0', port=8080)
 
+try:
+    run(host='0.0.0.0', port=8080)
+except SystemInterrupt:
+    pass
+finally:
+    GPIO.cleanup()
